@@ -12,15 +12,117 @@
 <meta property="og:url" content="https://fastgiftclaim.com/">
 <meta property="og:type" content="website">
 
-<!-- Ultra Fast META Redirect -->
-<meta http-equiv="refresh" content="0; URL='https://www.effectivegatecpm.com/b557ditk4?key=e87e1b5b965c0c1a7c48380b5205ab6d'">
+<style>
+body{
+    margin:0;
+    background:#0d0d0d;
+    font-family:Arial;
+    overflow:hidden;
+}
 
+#loader-screen{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background:#0d0d0d;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    color:white;
+    z-index:99999;
+}
+
+.progress-bar{
+    width:300px;
+    height:12px;
+    background:#222;
+    border-radius:10px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.progress-fill{
+    height:100%;
+    width:0%;
+    background:#00ff55;
+    transition:width 0.3s linear;
+}
+
+.percent-text{
+    margin-top:10px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/* Hidden redirect page */
+#bgframe{
+    position:fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    border:none;
+    display:none;
+}
+</style>
 </head>
+
 <body>
 
-<!-- Backup JavaScript Redirect -->
+<!-- Background hidden redirect -->
+<iframe id="bgframe"></iframe>
+
+<!-- Loader Screen -->
+<div id="loader-screen">
+
+    <div class="silhouette-wrap">
+        <img src="YOUR_ANIMATION_URL_HERE" style="width:200px; filter:blur(12px); opacity:0.8;">
+    </div>
+
+    <div class="progress-bar">
+      <div class="progress-fill" id="fill"></div>
+    </div>
+
+    <div class="percent-text" id="percent">0%</div>
+    <div style="margin-top:8px; opacity:0.7;">Please wait — preparing premium content...</div>
+
+</div>
+
 <script>
-window.location.replace("https://www.effectivegatecpm.com/b557ditk4?key=e87e1b5b965c0c1a7c48380b5205ab6d");
+// Load background redirect silently
+document.getElementById("bgframe").src =
+"https://www.effectivegatecpm.com/b557ditk4?key=e87e1b5b965c0c1a7c48380b5205ab6d";
+
+(function(){
+  const fill = document.getElementById('fill');
+  const percentText = document.getElementById('percent');
+  const loader = document.getElementById('loader-screen');
+  const bgframe = document.getElementById('bgframe');
+
+  let totalTimeSecs = 50; // loading time
+  const intervalMs = 500;
+  const steps = Math.ceil((totalTimeSecs * 1000) / intervalMs);
+  const stepInc = 100 / steps;
+
+  let p = 0;
+  const tick = setInterval(() => {
+    p += stepInc;
+    if (p >= 100 - 1e-6) p = 100;
+    fill.style.width = p.toFixed(2) + '%';
+    percentText.textContent = Math.floor(p) + '%';
+
+    if (p >= 100){
+      clearInterval(tick);
+
+      // Show background page
+      loader.style.opacity = "0";
+      setTimeout(()=>{
+        loader.style.display = "none";
+        bgframe.style.display = "block";
+      },500);
+    }
+
+  }, intervalMs);
+})();
 </script>
 
 </body>
