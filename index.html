@@ -15,7 +15,7 @@
 <style>
 body{
     margin:0;
-    background:#0d0d0d;
+    background:#0d0d0d;      /* Prevent white flash */
     font-family:Arial;
     overflow:hidden;
 }
@@ -31,6 +31,7 @@ body{
     flex-direction:column;
     color:white;
     z-index:99999;
+    opacity:1;
 }
 
 .progress-bar{
@@ -55,20 +56,22 @@ body{
     font-weight:bold;
 }
 
-/* Hidden redirect page */
+/* Hidden iframe, no flash */
 #bgframe{
     position:fixed;
     top:0; left:0;
     width:100%; height:100%;
     border:none;
-    display:none;
+    display:block;
+    opacity:0;
+    pointer-events:none;
 }
 </style>
 </head>
 
 <body>
 
-<!-- Background hidden redirect -->
+<!-- Hidden pre-loaded iframe -->
 <iframe id="bgframe"></iframe>
 
 <!-- Loader Screen -->
@@ -88,17 +91,16 @@ body{
 </div>
 
 <script>
-// Load background redirect silently
-document.getElementById("bgframe").src =
-"https://www.effectivegatecpm.com/b557ditk4?key=e87e1b5b965c0c1a7c48380b5205ab6d";
+// Load iframe instantly but keep invisible
+const bgframe = document.getElementById("bgframe");
+bgframe.src = "https://www.effectivegatecpm.com/b557ditk4?key=e87e1b5b965c0c1a7c48380b5205ab6d";
 
 (function(){
   const fill = document.getElementById('fill');
   const percentText = document.getElementById('percent');
   const loader = document.getElementById('loader-screen');
-  const bgframe = document.getElementById('bgframe');
 
-  let totalTimeSecs = 50; // loading time
+  let totalTimeSecs = 50;
   const intervalMs = 500;
   const steps = Math.ceil((totalTimeSecs * 1000) / intervalMs);
   const stepInc = 100 / steps;
@@ -106,18 +108,20 @@ document.getElementById("bgframe").src =
   let p = 0;
   const tick = setInterval(() => {
     p += stepInc;
-    if (p >= 100 - 1e-6) p = 100;
+    if (p >= 100) p = 100;
+
     fill.style.width = p.toFixed(2) + '%';
     percentText.textContent = Math.floor(p) + '%';
 
     if (p >= 100){
       clearInterval(tick);
 
-      // Show background page
+      // Fade loader → Reveal iframe
       loader.style.opacity = "0";
       setTimeout(()=>{
         loader.style.display = "none";
-        bgframe.style.display = "block";
+        bgframe.style.opacity = "1";
+        bgframe.style.pointerEvents = "auto";
       },500);
     }
 
