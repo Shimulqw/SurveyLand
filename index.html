@@ -1,133 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="bn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>surveyLand</title>
-
-<!-- Facebook Open Graph -->
-<meta property="og:title" content="🔥Watch & Download Premium HD Videos🔥">
-<meta property="og:description" content="fastgiftclaim.com/">
-<meta property="og:image" content="https://i.imgur.com/qU58oaJ.jpeg">
-<meta property="og:url" content="https://fastgiftclaim.com/">
-<meta property="og:type" content="website">
+<meta charset="UTF-8" />
+<title>Offer Pointer</title>
 
 <style>
-body{
-    margin:0;
-    background:#0d0d0d;      /* Prevent white flash */
-    font-family:Arial;
-    overflow:hidden;
-}
-
-#loader-screen{
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    background:#0d0d0d;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    color:white;
-    z-index:99999;
-    opacity:1;
-}
-
-.progress-bar{
-    width:300px;
-    height:12px;
-    background:#222;
-    border-radius:10px;
-    overflow:hidden;
-    margin-top:20px;
-}
-
-.progress-fill{
-    height:100%;
-    width:0%;
-    background:#00ff55;
-    transition:width 0.3s linear;
-}
-
-.percent-text{
-    margin-top:10px;
-    font-size:18px;
-    font-weight:bold;
-}
-
-/* Hidden iframe, no flash */
-#bgframe{
-    position:fixed;
-    top:0; left:0;
-    width:100%; height:100%;
-    border:none;
-    display:block;
-    opacity:0;
-    pointer-events:none;
-}
-</style>
-</head>
-
-<body>
-
-<!-- Hidden pre-loaded iframe -->
-<iframe id="bgframe"></iframe>
-
-<!-- Loader Screen -->
-<div id="loader-screen">
-
-    <div class="silhouette-wrap">
-        <img src="https://i.imgur.com/eInTN7W.gif" style="width:200px; filter:blur(12px); opacity:0.8;">
-    </div>
-
-    <div class="progress-bar">
-      <div class="progress-fill" id="fill"></div>
-    </div>
-
-    <div class="percent-text" id="percent">0%</div>
-    <div style="margin-top:8px; opacity:0.7;">Please wait — preparing premium content...</div>
-
-</div>
-
-<script>
-// Load iframe instantly but keep invisible
-const bgframe = document.getElementById("bgframe");
-bgframe.src = "https://www.effectivegatecpm.com/zx48d07js?key=b48c512dd74ff2d1fbc550ec1209b63c";
-
-(function(){
-  const fill = document.getElementById('fill');
-  const percentText = document.getElementById('percent');
-  const loader = document.getElementById('loader-screen');
-
-  let totalTimeSecs = 10;
-  const intervalMs = 100;
-  const steps = Math.ceil((totalTimeSecs * 1000) / intervalMs);
-  const stepInc = 100 / steps;
-
-  let p = 0;
-  const tick = setInterval(() => {
-    p += stepInc;
-    if (p >= 100) p = 100;
-
-    fill.style.width = p.toFixed(2) + '%';
-    percentText.textContent = Math.floor(p) + '%';
-
-    if (p >= 100){
-      clearInterval(tick);
-
-      // Fade loader → Reveal iframe
-      loader.style.opacity = "0";
-      setTimeout(()=>{
-        loader.style.display = "none";
-        bgframe.style.opacity = "1";
-        bgframe.style.pointerEvents = "auto";
-      },500);
+    body {
+        margin: 0;
+        padding: 0;
+        background: #111;
+        display: flex;
+        justify-content: center;
     }
 
-  }, intervalMs);
-})();
-</script>
+    .wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+    }
+
+    /* Pointer Emoji */
+    .pointer {
+        position: absolute;
+        top: 165px;   /* ← এখানে মান কমালে বা বাড়ালে WhatsApp-এর সাথে লাগবে */
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 55px;
+        animation: bounce 1s infinite;
+        z-index: 999;
+        pointer-events: none;
+    }
+
+    @keyframes bounce {
+        0%   { transform: translate(-50%, 0px); }
+        50%  { transform: translate(-50%, 12px); }
+        100% { transform: translate(-50%, 0px); }
+    }
+
+    /* Text */
+    .hint {
+        position: absolute;
+        top: 220px;   /* ↓ টেক্সট নিচে */
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        animation: blink 1s infinite;
+        z-index: 999;
+        pointer-events: none;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    iframe {
+        width: 100%;
+        height: 700px;
+        border: none;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div class="pointer">👇</div>
+    <div class="hint"></div>
+
+    <iframe src="https://hubverify.com/cl/?o=6925248a5a19d"></iframe>
+
+</div>
 
 </body>
 </html>
