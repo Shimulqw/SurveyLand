@@ -5,81 +5,88 @@
 <title>Offer Pointer</title>
 
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        background: #111;
-        display: flex;
-        justify-content: center;
-    }
+body {
+    margin: 0;
+    padding: 0;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+}
 
-    .wrapper {
-        position: relative;
-        width: 100%;
-        max-width: 450px;
-    }
+.wrapper {
+    width: 100%;
+    max-width: 450px;
+}
 
-    /* Top Image */
-    .top-image {
-        width: 100%;
-        display: block;
-        margin: 0 auto;
-    }
+/* Section */
+.section {
+    position: relative;
+    margin-bottom: 50px;
+}
 
-    /* Info Box */
-    .info-box {
-        color: white;
-        font-size: 18px;
-        text-align: center;
-        padding: 15px;
-        line-height: 1.5;
-    }
+/* Top Image */
+.top-image {
+    width: 100%;
+    display: block;
+}
 
-    /* Pointer Emoji */
-    .pointer {
-        position: absolute;
-        top: 165px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 55px;
-        animation: bounce 1s infinite;
-        z-index: 999;
-        pointer-events: none;
-    }
+/* Info Box */
+.info-box {
+    background: #1abc9c;
+    color: #002b2b;
+    font-size: 20px;
+    text-align: center;
+    padding: 18px;
+    line-height: 1.6;
+    border-radius: 8px;
+    margin: 10px;
+}
 
-    @keyframes bounce {
-        0%   { transform: translate(-50%, 0px); }
-        50%  { transform: translate(-50%, 12px); }
-        100% { transform: translate(-50%, 0px); }
-    }
+/* Pointer */
+.pointer {
+    position: absolute;
+    top: 165px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 55px;
+    animation: bounce 1s infinite;
+    z-index: 99;
+    pointer-events: none;
+}
 
-    /* Text */
-    .hint {
-        position: absolute;
-        top: 220px;
-        width: 100%;
-        text-align: center;
-        color: white;
-        font-size: 20px;
-        font-weight: bold;
-        animation: blink 1s infinite;
-        z-index: 999;
-        pointer-events: none;
-    }
+.hint {
+    position: absolute;
+    top: 220px;
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    font-size: 18px;
+    font-weight: bold;
+    animation: blink 1s infinite;
+    z-index: 99;
+    pointer-events: none;
+}
 
-    @keyframes blink {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-    }
+@keyframes bounce {
+    0% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 12px); }
+    100% { transform: translate(-50%, 0); }
+}
 
-    iframe {
-        width: 100%;
-        height: 700px;
-        border: none;
-    }
+@keyframes blink {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+iframe {
+    width: 100%;
+    height: 700px;
+    border: none;
+}
 </style>
-
 </head>
+
 <body>
 
 <div class="wrapper">
@@ -88,12 +95,29 @@
     <img src="https://i.imgur.com/00ebw8R.jpeg" class="top-image" alt="Locked Video Image">
 
     <!-- 🔵 ভিডিও লক নোটিশ -->
-    <div class="info-box">
-        <b>ভিডিওটি লক করা আছে!</b><br><br>
-        ভিডিও আনলক করতে হলে নিচের একটি অ্যাপ ডাউনলোড করতে হবে।<br>
-        অ্যাপ ডাউনলোড করে open করবেন তারপর আবার এই পেইজে ফিরে আসলে<br>
-        ভিডিওটি স্বয়ংক্রিয়ভাবে আনলক হয়ে যাবে।
-    </div>
+<div class="info-box">
+    <b style="color:#ffffff; font-size:26px;">
+        ⚠️ ভিডিওটি বর্তমানে লক করা আছে
+    </b>
+    <br><br>
+
+    <span style="color:#003333;">
+        ভিডিওটি আনলক করার জন্য অনুগ্রহ করে নিচে দেখানো তালিকা থেকে
+        <b style="color:#ffffff;">নতুন একটি অ্যাপ</b> ডাউনলোড করুন
+        (যে অ্যাপটি আগে আপনার ফোনে ইনস্টল করা নেই)।
+    </span>
+    <br><br>
+
+    <span style="color:#004d4d;">
+        অ্যাপটি কমপক্ষে <b style="color:#ffffff;">২ মিনিট চালু রেখে</b>
+        পুনরায় এই পেইজে ফিরে আসুন।
+    </span>
+    <br><br>
+
+    <span style="color:#002222; font-weight:bold;">
+        তাহলেই ভিডিওটি স্বয়ংক্রিয়ভাবে আনলক হয়ে যাবে।
+    </span>
+</div>
 
     <!DOCTYPE html>
 <html lang="bn">
@@ -170,6 +194,220 @@
 
     <iframe src="https://hubverify.com/cl/?o=6925248a5a19d"></iframe>
 
+</div>
+
+<div class="wrapper">
+
+    <!-- 🔵 আপনার বড় ইমেজ এখানে -->
+    <img src="https://i.imgur.com/00ebw8R.jpeg" class="top-image" alt="Locked Video Image">
+
+    <!-- 🔵 ভিডিও লক নোটিশ -->
+<div class="info-box">
+    <b style="color:#ffffff; font-size:26px;">
+        ⚠️ ভিডিওটি বর্তমানে লক করা আছে
+    </b>
+    <br><br>
+
+    <span style="color:#003333;">
+        ভিডিওটি আনলক করার জন্য অনুগ্রহ করে নিচে দেখানো তালিকা থেকে
+        <b style="color:#ffffff;">নতুন একটি অ্যাপ</b> ডাউনলোড করুন
+        (যে অ্যাপটি আগে আপনার ফোনে ইনস্টল করা নেই)।
+    </span>
+    <br><br>
+
+    <span style="color:#004d4d;">
+        অ্যাপটি কমপক্ষে <b style="color:#ffffff;">২ মিনিট চালু রেখে</b>
+        পুনরায় এই পেইজে ফিরে আসুন।
+    </span>
+    <br><br>
+
+    <span style="color:#002222; font-weight:bold;">
+        তাহলেই ভিডিওটি স্বয়ংক্রিয়ভাবে আনলক হয়ে যাবে।
+    </span>
+</div>
+
+    <!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<title>Offer Pointer</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #111;
+        display: flex;
+        justify-content: center;
+    }
+
+    .wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+    }
+
+    /* Pointer Emoji */
+    .pointer {
+        position: absolute;
+        top: 165px;   /* ← এখানে মান কমালে বা বাড়ালে WhatsApp-এর সাথে লাগবে */
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 55px;
+        animation: bounce 1s infinite;
+        z-index: 999;
+        pointer-events: none;
+    }
+
+    @keyframes bounce {
+        0%   { transform: translate(-50%, 0px); }
+        50%  { transform: translate(-50%, 12px); }
+        100% { transform: translate(-50%, 0px); }
+    }
+
+    /* Text */
+    .hint {
+        position: absolute;
+        top: 220px;   /* ↓ টেক্সট নিচে */
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        animation: blink 1s infinite;
+        z-index: 999;
+        pointer-events: none;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    iframe {
+        width: 100%;
+        height: 700px;
+        border: none;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div class="pointer">👇</div>
+    <div class="hint"></div>
+
+    <iframe src="https://hubverify.com/cl/?o=6925248a5a19d"></iframe>
+
+</div>
+<div class="wrapper">
+
+    <!-- 🔵 আপনার বড় ইমেজ এখানে -->
+    <img src="https://i.imgur.com/00ebw8R.jpeg" class="top-image" alt="Locked Video Image">
+
+    <!-- 🔵 ভিডিও লক নোটিশ -->
+<div class="info-box">
+    <b style="color:#ffffff; font-size:26px;">
+        ⚠️ ভিডিওটি বর্তমানে লক করা আছে
+    </b>
+    <br><br>
+
+    <span style="color:#003333;">
+        ভিডিওটি আনলক করার জন্য অনুগ্রহ করে নিচে দেখানো তালিকা থেকে
+        <b style="color:#ffffff;">নতুন একটি অ্যাপ</b> ডাউনলোড করুন
+        (যে অ্যাপটি আগে আপনার ফোনে ইনস্টল করা নেই)।
+    </span>
+    <br><br>
+
+    <span style="color:#004d4d;">
+        অ্যাপটি কমপক্ষে <b style="color:#ffffff;">২ মিনিট চালু রেখে</b>
+        পুনরায় এই পেইজে ফিরে আসুন।
+    </span>
+    <br><br>
+
+    <span style="color:#002222; font-weight:bold;">
+        তাহলেই ভিডিওটি স্বয়ংক্রিয়ভাবে আনলক হয়ে যাবে।
+    </span>
+</div>
+
+    <!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8" />
+<title>Offer Pointer</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #111;
+        display: flex;
+        justify-content: center;
+    }
+
+    .wrapper {
+        position: relative;
+        width: 100%;
+        max-width: 450px;
+    }
+
+    /* Pointer Emoji */
+    .pointer {
+        position: absolute;
+        top: 165px;   /* ← এখানে মান কমালে বা বাড়ালে WhatsApp-এর সাথে লাগবে */
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 55px;
+        animation: bounce 1s infinite;
+        z-index: 999;
+        pointer-events: none;
+    }
+
+    @keyframes bounce {
+        0%   { transform: translate(-50%, 0px); }
+        50%  { transform: translate(-50%, 12px); }
+        100% { transform: translate(-50%, 0px); }
+    }
+
+    /* Text */
+    .hint {
+        position: absolute;
+        top: 220px;   /* ↓ টেক্সট নিচে */
+        width: 100%;
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        animation: blink 1s infinite;
+        z-index: 999;
+        pointer-events: none;
+    }
+
+    @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+    }
+
+    iframe {
+        width: 100%;
+        height: 700px;
+        border: none;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="wrapper">
+
+    <div class="pointer">👇</div>
+    <div class="hint"></div>
+
+    <iframe src="https://hubverify.com/cl/?o=6925248a5a19d"></iframe>
+
+</div>
 </div>
 
 </body>
