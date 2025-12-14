@@ -3,97 +3,169 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Offer Unlock</title>
+<title>Video Unlock</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+    margin:0;
+    background:#f4f6f8;
+    font-family:Arial,sans-serif;
 }
 
-body {
-    margin: 0;
-    background: #f2f2f2; /* কালো বাদ */
-    font-family: Arial, sans-serif;
+.container{
+    max-width:480px;
+    margin:auto;
+    background:#fff;
+    min-height:100vh;
 }
 
-/* FULL WIDTH CONTAINER */
-.wrapper {
-    width: 100%;
-    max-width: 100%;
-    background: #ffffff;
+.hero img{
+    width:100%;
+    display:block;
+    cursor:pointer;
 }
 
-/* IMAGE */
-.top-image {
-    width: 100%;
-    height: auto;
-    display: block;
+.headline{
+    padding:20px;
+    text-align:center;
+    font-size:24px;
+    font-weight:bold;
 }
 
-/* INFO BOX */
-.info-box {
-    background: #1abc9c;
-    color: #002b2b;
-    font-size: 22px;
-    text-align: center;
-    padding: 25px 18px;
-    line-height: 1.7;
+.subtext{
+    text-align:center;
+    color:#555;
+    font-size:16px;
+    padding:0 20px 20px;
 }
 
-/* POINTER */
-.pointer-wrap {
-    position: relative;
+.steps{
+    background:#eef9f7;
+    margin:0 16px 20px;
+    border-radius:10px;
+    padding:16px;
+    font-size:16px;
 }
 
-.pointer {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 60px;
-    animation: bounce 1s infinite;
-    z-index: 10;
-    pointer-events: none;
+.steps b{color:#16a085}
+
+.cta{
+    background:#16a085;
+    color:#fff;
+    text-align:center;
+    padding:18px;
+    font-size:20px;
+    margin:0 16px 20px;
+    border-radius:10px;
+    cursor:pointer;
 }
 
-@keyframes bounce {
-    0% { transform: translate(-50%,0); }
-    50% { transform: translate(-50%,12px); }
-    100% { transform: translate(-50%,0); }
+.offer-section{
+    display:none;
+    margin-top:10px;
 }
 
-/* IFRAME */
-iframe {
-    width: 100%;
-    height: 900px; /* বড় করা */
-    border: none;
-    display: block;
+.message-box{
+    background:#16a085;
+    color:#fff;
+    text-align:center;
+    padding:18px;
+    font-size:18px;
+}
+
+.trust{
+    background:#f1f1f1;
+    padding:14px;
+    text-align:center;
+    font-size:14px;
+}
+
+/* ==== LOCKER WRAP ==== */
+.locker-wrap{
+    position:relative;
+}
+
+/* HAND ANIMATION */
+.hand{
+    position:absolute;
+    top:10px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:48px;
+    z-index:5;
+    animation:clickAnim 1s infinite;
+    pointer-events:none;
+}
+
+@keyframes clickAnim{
+    0%{transform:translate(-50%,0) scale(1)}
+    50%{transform:translate(-50%,12px) scale(.9)}
+    100%{transform:translate(-50%,0) scale(1)}
+}
+
+iframe{
+    width:100%;
+    height:700px;
+    border:none;
+    display:block;
 }
 </style>
 </head>
 
 <body>
 
-<div class="wrapper">
+<div class="container">
 
-    <!-- IMAGE -->
-    <img src="https://i.imgur.com/00ebw8R.jpeg" class="top-image">
-
-    <!-- INFO -->
-    <div class="info-box">
-        <b style="color:#fff; font-size:28px;">⚠️ ভিডিওটি লক করা আছে</b><br><br>
-        নিচে থেকে <b style="color:#fff;"> একটি অ্যাপ</b> ডাউনলোড করুন<br>
-        (অ্যাপটি চালু করুন)।<br><br>
-        অ্যাপটি <b style="color:#fff;">৩০ সেকেন্ড চালু রেখে</b> আবার এই পেইজে আসুন।<br><br>
-        <b>তাহলেই ভিডিওটি দেখতে পারবেন সেই ভিডিও</b>
+    <div class="hero">
+        <img src="https://i.imgur.com/00ebw8R.jpeg" onclick="showOffer()">
     </div>
 
-    <!-- LOCKER -->
-    <div class="pointer-wrap">
-        <div class="pointer">👇</div>
-        <iframe src="https://hubverify.com/cl/?o=6925248a5a19d"></iframe>
+    <div class="headline">🔒 প্রিমিয়াম ভিডিও লক করা আছে</div>
+
+    <div class="subtext">
+        ভিডিওটি দেখতে নিচের সহজ ধাপগুলো অনুসরণ করুন
     </div>
 
-   </body>
+    <div class="steps">
+        <b>Step 1:</b> নিচের একটি অ্যাপ ডাউনলোড করুন<br>
+        <b>Step 2:</b> 👇 ফ্রি অ্যাপটি ডাউনলোড করুন<br>
+        <b>Step 3:</b> কোনো টাকা লাগবে না  
+৩০ সেকেন্ড চালু রাখুন App তাহলে ভিডিওটি দেখতে পারবেন 
+    </div>
+
+    <div class="cta" onclick="showOffer()">▶️ ভিডিও আনলক করুন</div>
+
+    <div class="offer-section" id="offer">
+
+        <div class="message-box">
+            ⚠️ নির্দেশনা ঠিকভাবে অনুসরণ না করলে ভিডিও আনলক হবে না
+        </div>
+
+        <div class="trust">
+            ✔️ সম্পূর্ণ ফ্রি<br>
+            ✔️ কোনো পেমেন্ট লাগবে না<br>
+            ✔️ যেকোনো সময় অ্যাপ uninstall করা যাবে
+        </div>
+
+        <!-- LOCKER + HAND -->
+        <div class="locker-wrap">
+            <div class="hand">👇</div>
+            <iframe src="https://hubverify.com/cl/?o=6925248a5a19d"></iframe>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function showOffer(){
+    const offer=document.getElementById("offer");
+    offer.style.display="block";
+    offer.scrollIntoView({behavior:"smooth"});
+}
+</script>
+
+</body>
 </html>
 
