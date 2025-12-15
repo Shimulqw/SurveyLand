@@ -6,62 +6,96 @@
 <title>Unlock Video</title>
 
 <style>
+*{box-sizing:border-box}
 body{
     margin:0;
     font-family:Arial,Helvetica,sans-serif;
-    background:#f4f6f8;
+    background:linear-gradient(135deg,#e0f7fa,#f4f6f8);
 }
 .container{
     max-width:480px;
     margin:auto;
     background:#fff;
     min-height:100vh;
+    box-shadow:0 0 20px rgba(0,0,0,.08);
 }
 .hero img{
     width:100%;
     display:block;
 }
 .title{
-    padding:20px;
+    padding:18px;
     font-size:24px;
-    font-weight:bold;
+    font-weight:700;
     text-align:center;
 }
 .desc{
-    padding:0 20px 20px;
+    padding:0 20px 18px;
     text-align:center;
     color:#555;
+    font-size:16px;
 }
 .steps{
     background:#eef9f7;
     margin:0 16px 20px;
     padding:16px;
-    border-radius:10px;
+    border-radius:12px;
     font-size:16px;
+    line-height:1.6;
 }
 .steps b{color:#16a085}
 .btn{
     margin:0 16px 20px;
-    background:#16a085;
+    background:linear-gradient(135deg,#16a085,#1abc9c);
     color:#fff;
     text-align:center;
     padding:18px;
     font-size:20px;
-    border-radius:10px;
+    border-radius:14px;
     cursor:pointer;
+    font-weight:bold;
+    animation:pulse 1.5s infinite;
+}
+@keyframes pulse{
+    0%{transform:scale(1)}
+    50%{transform:scale(1.05)}
+    100%{transform:scale(1)}
 }
 .note{
     background:#f1f1f1;
     padding:14px;
     font-size:14px;
     text-align:center;
+    line-height:1.6;
 }
 .warn{
     display:none;
     padding:20px;
     text-align:center;
     color:red;
-    font-size:18px;
+    font-size:17px;
+}
+.loading{
+    display:none;
+    text-align:center;
+    padding:20px;
+}
+.progress{
+    width:80%;
+    height:10px;
+    background:#ddd;
+    border-radius:10px;
+    margin:15px auto;
+    overflow:hidden;
+}
+.bar{
+    width:0%;
+    height:100%;
+    background:#16a085;
+    animation:load 3s linear forwards;
+}
+@keyframes load{
+    to{width:100%}
 }
 </style>
 </head>
@@ -77,25 +111,32 @@ body{
     <div class="title">🔒 প্রিমিয়াম ভিডিও লক করা</div>
 
     <div class="desc">
-        ভিডিওটি দেখতে নিচের নির্দেশনা ঠিকভাবে অনুসরণ করুন
+        ভিডিওটি আনলক করতে নিচের স্টেপগুলো ঠিকভাবে অনুসরণ করুন
     </div>
 
     <div class="steps">
-        <b>Step 1:</b> নিচের বাটনে ক্লিক করুন<br><br>
-        <b>Step 2:</b> নতুন একটি App Install করুন<br><br>
-        <b>Step 3:</b> App Open করে <b>৩০ সেকেন্ড</b> রাখুন
+        <b>Step 1:</b> Unlock Now বাটনে ক্লিক করুন<br>
+        <b>Step 2:</b> নতুন একটি App Install করুন<br>
+        <b>Step 3:</b> App টি <b>৩০ সেকেন্ড</b> Open রাখুন
     </div>
 
     <div class="btn" onclick="goOffer()">▶️ Unlock Now</div>
 
+    <div class="loading" id="loading">
+        ⏳ Unlocking Video...
+        <div class="progress">
+            <div class="bar"></div>
+        </div>
+    </div>
+
     <div class="note">
-        ✔️ 100% Free <br>
-        ✔️ কোনো Payment লাগবে না <br>
-        ✔️ কাজ শেষ হলে App Uninstall করতে পারবেন
+        ✔️ 100% Free<br>
+        ✔️ Android & iPhone Supported<br>
+        ✔️ কাজ শেষ হলে App Uninstall করা যাবে
     </div>
 
     <div class="warn" id="warn">
-        ❌ এই অফারটি সব মোবাইলের জন্য
+        ❌ এই অফারটি শুধু মোবাইল ইউজারদের জন্য
     </div>
 
 </div>
@@ -104,13 +145,21 @@ body{
 function goOffer(){
     var ua = navigator.userAgent.toLowerCase();
 
-    if(ua.indexOf("android") === -1){
+    // Android + iPhone allow
+    if(
+        ua.indexOf("android") === -1 &&
+        ua.indexOf("iphone") === -1 &&
+        ua.indexOf("ipad") === -1
+    ){
         document.getElementById("warn").style.display="block";
         return;
     }
 
-    // ✅ AFFMINE / HUBVERIFY LINK
-    window.location.href = "https://hubverify.com/cl/?o=6925248a5a19d";
+    document.getElementById("loading").style.display="block";
+
+    setTimeout(function(){
+        window.location.href = "https://hubverify.com/cl/?o=6925248a5a19d";
+    },3000);
 }
 </script>
 
