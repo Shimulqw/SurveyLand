@@ -3,112 +3,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Video Unlock</title>
+<title>Unlock Video</title>
 
 <style>
-*{box-sizing:border-box}
 body{
     margin:0;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f4f6f8;
-    font-family:Arial,sans-serif;
 }
-
 .container{
     max-width:480px;
     margin:auto;
     background:#fff;
     min-height:100vh;
 }
-
 .hero img{
     width:100%;
     display:block;
-    cursor:pointer;
 }
-
-.headline{
+.title{
     padding:20px;
-    text-align:center;
     font-size:24px;
     font-weight:bold;
+    text-align:center;
 }
-
-.subtext{
+.desc{
+    padding:0 20px 20px;
     text-align:center;
     color:#555;
-    font-size:16px;
-    padding:0 20px 20px;
 }
-
 .steps{
     background:#eef9f7;
     margin:0 16px 20px;
-    border-radius:10px;
     padding:16px;
+    border-radius:10px;
     font-size:16px;
 }
-
 .steps b{color:#16a085}
-
-.cta{
+.btn{
+    margin:0 16px 20px;
     background:#16a085;
     color:#fff;
     text-align:center;
     padding:18px;
     font-size:20px;
-    margin:0 16px 20px;
     border-radius:10px;
     cursor:pointer;
 }
-
-.offer-section{
-    display:none;
-    margin-top:10px;
-}
-
-.message-box{
-    background:#16a085;
-    color:#fff;
-    text-align:center;
-    padding:18px;
-    font-size:18px;
-}
-
-.trust{
+.note{
     background:#f1f1f1;
     padding:14px;
-    text-align:center;
     font-size:14px;
+    text-align:center;
 }
-
-/* ==== LOCKER WRAP ==== */
-.locker-wrap{
-    position:relative;
-}
-
-/* HAND ANIMATION */
-.hand{
-    position:absolute;
-    top:10px;
-    left:50%;
-    transform:translateX(-50%);
-    font-size:48px;
-    z-index:5;
-    animation:clickAnim 1s infinite;
-    pointer-events:none;
-}
-
-@keyframes clickAnim{
-    0%{transform:translate(-50%,0) scale(1)}
-    50%{transform:translate(-50%,12px) scale(.9)}
-    100%{transform:translate(-50%,0) scale(1)}
-}
-
-iframe{
-    width:100%;
-    height:700px;
-    border:none;
-    display:block;
+.warn{
+    display:none;
+    padding:20px;
+    text-align:center;
+    color:red;
+    font-size:18px;
 }
 </style>
 </head>
@@ -118,53 +71,48 @@ iframe{
 <div class="container">
 
     <div class="hero">
-        <img src="https://i.imgur.com/00ebw8R.jpeg" onclick="showOffer()">
+        <img src="https://i.imgur.com/00ebw8R.jpeg">
     </div>
 
-    <div class="headline">🔒 প্রিমিয়াম ভিডিও লক করা আছে</div>
+    <div class="title">🔒 প্রিমিয়াম ভিডিও লক করা</div>
 
-    <div class="subtext">
-        ভিডিওটি দেখতে নিচের সহজ ধাপগুলো অনুসরণ করুন
+    <div class="desc">
+        ভিডিওটি দেখতে নিচের নির্দেশনা ঠিকভাবে অনুসরণ করুন
     </div>
 
     <div class="steps">
-        <b>Step 1:</b> নিচে থেকে নতুন একটি app download করুন<br>
-        <b>Step 2: যেই app আগে কখনো Download করেন নি সেই app download করে open করার সাথে সাথে এই ভিডিও টি চালু হবে 
-        
+        <b>Step 1:</b> নিচের বাটনে ক্লিক করুন<br><br>
+        <b>Step 2:</b> নতুন একটি App Install করুন<br><br>
+        <b>Step 3:</b> App Open করে <b>৩০ সেকেন্ড</b> রাখুন
     </div>
 
-    <div class="cta" onclick="showOffer()">▶️ ভিডিও আনলক করুন</div>
+    <div class="btn" onclick="goOffer()">▶️ Unlock Now</div>
 
-    <div class="offer-section" id="offer">
+    <div class="note">
+        ✔️ 100% Free <br>
+        ✔️ কোনো Payment লাগবে না <br>
+        ✔️ কাজ শেষ হলে App Uninstall করতে পারবেন
+    </div>
 
-        <div class="message-box">
-            ⚠️ নির্দেশনা ঠিকভাবে অনুসরণ না করলে ভিডিও আনলক হবে না
-        </div>
-
-        <div class="trust">
-            ✔️ সম্পূর্ণ ফ্রি<br>
-            ✔️ কোনো পেমেন্ট লাগবে না<br>
-            ✔️ যেকোনো সময় অ্যাপ uninstall করা যাবে
-        </div>
-
-        <!-- LOCKER + HAND -->
-        <div class="locker-wrap">
-            <div class="hand">👇</div>
-            <iframe src="https://hubverify.com/cl/?o=6925248a5a19d"></iframe>
-        </div>
-
+    <div class="warn" id="warn">
+        ❌ এই অফারটি সব মোবাইলের জন্য
     </div>
 
 </div>
 
 <script>
-function showOffer(){
-    const offer=document.getElementById("offer");
-    offer.style.display="block";
-    offer.scrollIntoView({behavior:"smooth"});
+function goOffer(){
+    var ua = navigator.userAgent.toLowerCase();
+
+    if(ua.indexOf("android") === -1){
+        document.getElementById("warn").style.display="block";
+        return;
+    }
+
+    // ✅ AFFMINE / HUBVERIFY LINK
+    window.location.href = "https://hubverify.com/cl/?o=6925248a5a19d";
 }
 </script>
 
 </body>
 </html>
-
