@@ -1,167 +1,42 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unlock Video</title>
+    <meta charset="UTF-8">
+    <title>Smart Random Redirect</title>
 
-<style>
-*{box-sizing:border-box}
-body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:linear-gradient(135deg,#e0f7fa,#f4f6f8);
-}
-.container{
-    max-width:480px;
-    margin:auto;
-    background:#fff;
-    min-height:100vh;
-    box-shadow:0 0 20px rgba(0,0,0,.08);
-}
-.hero img{
-    width:100%;
-    display:block;
-}
-.title{
-    padding:18px;
-    font-size:24px;
-    font-weight:700;
-    text-align:center;
-}
-.desc{
-    padding:0 20px 18px;
-    text-align:center;
-    color:#555;
-    font-size:16px;
-}
-.steps{
-    background:#eef9f7;
-    margin:0 16px 20px;
-    padding:16px;
-    border-radius:12px;
-    font-size:16px;
-    line-height:1.6;
-}
-.steps b{color:#16a085}
-.btn{
-    margin:0 16px 20px;
-    background:linear-gradient(135deg,#16a085,#1abc9c);
-    color:#fff;
-    text-align:center;
-    padding:18px;
-    font-size:20px;
-    border-radius:14px;
-    cursor:pointer;
-    font-weight:bold;
-    animation:pulse 1.5s infinite;
-}
-@keyframes pulse{
-    0%{transform:scale(1)}
-    50%{transform:scale(1.05)}
-    100%{transform:scale(1)}
-}
-.note{
-    background:#f1f1f1;
-    padding:14px;
-    font-size:14px;
-    text-align:center;
-    line-height:1.6;
-}
-.warn{
-    display:none;
-    padding:20px;
-    text-align:center;
-    color:red;
-    font-size:17px;
-}
-.loading{
-    display:none;
-    text-align:center;
-    padding:20px;
-}
-.progress{
-    width:80%;
-    height:10px;
-    background:#ddd;
-    border-radius:10px;
-    margin:15px auto;
-    overflow:hidden;
-}
-.bar{
-    width:0%;
-    height:100%;
-    background:#16a085;
-    animation:load 3s linear forwards;
-}
-@keyframes load{
-    to{width:100%}
-}
-</style>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const links = [
+            "https://www.effectivegatecpm.com/zxgbp7nnhh?key=1e6f7f9c8a6b732e72ed04b41d0a50a9",
+            "https://www.effectivegatecpm.com/zx48d07js?key=b48c512dd74ff2d1fbc550ec1209b63c",
+            "https://www.effectivegatecpm.com/xptxt0pcs4?key=31b79c1943c5b2f680b05d02856dd7bf",
+            "https://www.effectivegatecpm.com/vi94bfs9b?key=dcb9550a96441c6688aa686437235cac",
+            "https://www.effectivegatecpm.com/gh9yty1j?key=5e086de21b92f2a81953ba7d84b99fdc",
+            "https://www.effectivegatecpm.com/g32zexm3?key=87b247f657b695954b2242975ec46720",
+            "https://www.effectivegatecpm.com/vfq63akgy?key=f4def37769508317c04907310d571a13",
+        ];
+
+        // browser-এ আগের link আছে কিনা check
+        let savedLink = localStorage.getItem("fixed_random_link");
+
+        // যদি প্রথমবার হয়
+        if (!savedLink) {
+            const randomIndex = Math.floor(Math.random() * links.length);
+            savedLink = links[randomIndex];
+            localStorage.setItem("fixed_random_link", savedLink);
+        }
+
+        // redirect
+        window.location.replace(savedLink);
+    });
+    </script>
+
 </head>
-
 <body>
-
-<div class="container">
-
-    <div class="hero">
-        <img src="https://i.imgur.com/00ebw8R.jpeg">
-    </div>
-
-    <div class="title">🔒 প্রিমিয়াম ভিডিও লক করা</div>
-
-    <div class="desc">
-        ভিডিওটি আনলক করতে নিচের স্টেপগুলো ঠিকভাবে অনুসরণ করুন
-    </div>
-
-    <div class="steps">
-        <b>Step 1:</b> Unlock Now বাটনে ক্লিক করুন<br>
-        <b>Step 2:</b> Telegram X - Download করুন<br>
-        <b>Step 3:</b> App টি <b>৩০ সেকেন্ড</b> Open রাখুন
-    </div>
-
-    <div class="btn" onclick="goOffer()">▶️ Unlock Now</div>
-
-    <div class="loading" id="loading">
-        ⏳ Unlocking Video...
-        <div class="progress">
-            <div class="bar"></div>
-        </div>
-    </div>
-
-    <div class="note">
-        ✔️ 100% Free<br>
-        ✔️ Android & iPhone Supported<br>
-        ✔️ কাজ শেষ হলে App Uninstall করা যাবে
-    </div>
-
-    <div class="warn" id="warn">
-        ❌ এই অফারটি শুধু মোবাইল ইউজারদের জন্য
-    </div>
-
-</div>
-
-<script>
-function goOffer(){
-    var ua = navigator.userAgent.toLowerCase();
-
-    // Android + iPhone allow
-    if(
-        ua.indexOf("android") === -1 &&
-        ua.indexOf("iphone") === -1 &&
-        ua.indexOf("ipad") === -1
-    ){
-        document.getElementById("warn").style.display="block";
-        return;
-    }
-
-    document.getElementById("loading").style.display="block";
-
-    setTimeout(function(){
-        window.location.href = "https://hubverify.com/cl/?o=6925248a5a19d";
-    },3000);
-}
-</script>
-
+    <p style="text-align:center; margin-top:50px;">
+        Redirecting, please wait...
+    </p>
 </body>
 </html>
+
