@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Generator</title>
+
+<style>
+:root{
+  --gold1:#d6b15b;
+  --gold2:#f7e7b0;
+  --gold-glow:#d6b15b99;
+  --bg:#050507;
+}
+
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+
+/* MAIN BACKGROUND (SCROLL ENABLED) */
+body{
+  min-height:100vh;
+  background:radial-gradient(circle at center,#111,#000);
+  font-family:Poppins, sans-serif;
+  color:#fff;
+
+  /* SCROLL ENABLE */
+  overflow-y:auto;
+  padding:45px 0;
+}
+
+/* FX (floating icons) */
+.fx{
+  position:fixed;
+  pointer-events:none;
+  font-weight:900;
+  opacity:0.85;
+  animation: floatUp 9s linear infinite;
+  text-shadow:0 0 16px currentColor;
+}
+
+.green{ color:#00ff6a; }
+.gold{ color:#ffd56b; }
+.diamond{ color:#00eaff; }
+.rainbow{
+  background:linear-gradient(90deg,#ff0077,#ff8a00,#ffee00,#00ff44,#00eaff,#b56fff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+@keyframes floatUp{
+  0%{ transform:translateY(110vh) scale(0.7); opacity:1; }
+  100%{ transform:translateY(-10vh) scale(1.6); opacity:0; }
+}
+
+/* spark */
+.spark{
+  position:fixed;
+  width:5px;height:5px;
+  background:#fff;
+  border-radius:50%;
+  animation:sparkMove 6s linear infinite;
+  filter:blur(2px);
+  opacity:0.7;
+}
+@keyframes sparkMove{
+  0%{ transform:translateY(110vh); opacity:0.9; }
+  100%{ transform:translateY(-10vh); opacity:0; }
+}
+
+/* CARD */
+.card{
+  width:380px;
+  max-width:95vw;
+  background:linear-gradient(165deg,#1a1a1a,#0b0b0b);
+  padding:32px 28px;
+  border-radius:22px;
+  border:1px solid #6a5428;
+  box-shadow:
+    0 0 25px #d6b15b22,
+    inset 0 0 20px #d6b15b26,
+    inset 0 0 60px #000;
+  text-align:center;
+  backdrop-filter:blur(8px);
+
+  margin:auto; /* center while scrollable */
+}
+h1{
+  font-size:32px;
+  margin-bottom:18px;
+  background:linear-gradient(90deg,var(--gold1),var(--gold2));
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+/* PROGRESS */
+.progress-wrap{ position:relative; height:40px; margin:12px 0; }
+.track{
+  position:absolute; left:12px; right:12px; top:18px;
+  height:8px; background:#141414; border-radius:10px;
+}
+.fill{
+  position:absolute; left:12px; top:18px;
+  height:8px; width:0%;
+  background:linear-gradient(90deg,var(--gold1),var(--gold2),var(--gold1));
+  border-radius:10px;
+  box-shadow:0 0 18px var(--gold-glow);
+  transition:width 0.25s linear;
+}
+.dot{
+  position:absolute; top:10px;
+  width:20px;height:20px;
+  background:#333; border-radius:50%;
+  border:4px solid #1d1d1d;
+  transform:translateX(-50%);
+}
+.dot.active{
+  background:var(--gold1);
+  box-shadow:0 0 18px var(--gold-glow);
+  transform:translateX(-50%) scale(1.18);
+}
+
+.status{ margin-top:35px; font-size:18px; color:#bbb; min-height:65px; }
+
+/* CODE */
+.code{
+  margin-top:22px;
+  font-size:22px;
+  font-weight:700;
+  letter-spacing:4px;
+  background:linear-gradient(90deg,var(--gold1),var(--gold2));
+  -webkit-background-clip:text;
+  color:transparent;
+  opacity:0;
+  transition:0.4s;
+}
+.code.show{ opacity:1; }
+
+.verify{
+  margin-top:22px;
+  padding:13px 20px;
+  background:linear-gradient(90deg,#d83,#f66,#d83);
+  border:none;
+  border-radius:10px;
+  color:#fff;
+  font-weight:700;
+  font-size:17px;
+  cursor:pointer;
+  opacity:0;
+  transition:0.4s;
+}
+.verify.show{ opacity:1; }
+
+.small{margin-top:12px;font-size:14px;color:#777;}
+
+/* CONTENT LOCKER */
+#lockerBox{
+  margin-top:20px;
+  display:none;
+  width:100%;
+}
+#iframeBox{
+  width:100%;
+  height:380px;
+  border:0;
+  border-radius:14px;
+  box-shadow:0 0 25px #d6b15b45;
+}
+
+/* ============================
+   GREEN DOLLAR FLYING ANIMATION
+   ============================ */
+.dollar {
+  position:fixed;
+  top:110%;
+  left:0;
+  font-size:28px;
+  color:#00ff5f;
+  opacity:0.9;
+  pointer-events:none;
+  animation: flyDollar 6s linear infinite;
+  filter: drop-shadow(0 0 8px #00ff6a);
+  mix-blend-mode:screen;
+}
+
+@keyframes flyDollar {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-140vh) rotate(360deg) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width:480px){
+  .card{ padding:22px; width:92%; }
+  .code{ font-size:18px; letter-spacing:3px; }
+  #iframeBox{ height:320px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="mainCard">
+  <h1 id="title">CONNECTING</h1>
+
+  <div class="progress-wrap">
+    <div class="track"></div>
+    <div class="fill" id="fill"></div>
+
+    <div class="dot" id="dot1" style="left:12px"></div>
+    <div class="dot" id="dot2" style="left:50%"></div>
+    <div class="dot" id="dot3" style="left:calc(100% - 12px)"></div>
+  </div>
+
+  <div class="status">
+    <div id="s1">Connecting to server...</div>
+    <div id="s2" style="display:none">Connected</div>
+    <div id="s3" style="display:none">Generating Secure Key...</div>
+    <div id="s4" style="display:none">Key Generated Successfully</div>
+  </div>
+
+  <div class="code" id="code">XXXX-XXXX-XXXX-XXXX</div>
+
+  <button class="verify" id="verifyBtn">Human Verification</button>
+  <div class="small">To display the last codes, we must verify that you are a real human, Click on this button and complete one offer.</div>
+
+  <div id="lockerBox">
+    <iframe id="iframeBox" src=""></iframe>
+  </div>
+</div>
+
+<script>
+/* FX */
+const icons=["$","$","$","💰","💲","💎","💎","✦","✧","✺","✹","❈","✪"];
+for(let i=0;i<110;i++){
+  let e=document.createElement("div");
+  e.classList.add("fx");
+  let sym=icons[Math.floor(Math.random()*icons.length)];
+  e.textContent=sym;
+  if(sym==="$"||sym==="💰"||sym==="💲") e.classList.add(Math.random()>0.5?"green":"gold");
+  else if(sym==="💎") e.classList.add("diamond");
+  else e.classList.add("rainbow");
+  e.style.left=Math.random()*100+"vw";
+  e.style.fontSize=(20+Math.random()*40)+"px";
+  e.style.animationDuration=(6+Math.random()*5)+"s";
+  e.style.animationDelay=(Math.random()*5)+"s";
+  document.body.appendChild(e);
+}
+
+/* spark */
+for(let i=0;i<55;i++){
+  let s=document.createElement("div");
+  s.className="spark";
+  s.style.left=Math.random()*100+"vw";
+  s.style.animationDuration=(4+Math.random()*4)+"s";
+  s.style.animationDelay=(Math.random()*3)+"s";
+  document.body.appendChild(s);
+}
+
+/* GREEN DOLLAR CREATION */
+function createDollar() {
+  const dollar = document.createElement("div");
+  dollar.classList.add("dollar");
+  dollar.textContent = "$";
+  // random left position
+  dollar.style.left = Math.random() * 100 + "%";
+  // random size
+  dollar.style.fontSize = (18 + Math.random() * 36) + "px";
+  // random animation duration
+  dollar.style.animationDuration = (4 + Math.random() * 5) + "s";
+  // slight horizontal sway using transform-origin & translateX via CSS variable (applied inline)
+  const sway = (Math.random() - 0.5) * 60; // -30 to 30 px
+  dollar.style.transform = `translateX(${sway}px)`;
+  document.body.appendChild(dollar);
+  // remove after animation
+  setTimeout(()=> dollar.remove(), 9000);
+}
+// create a new dollar at interval (slightly staggered)
+setInterval(createDollar, 350);
+
+/* PROGRESS + KEY GENERATOR */
+const fill=document.getElementById("fill");
+const dot1=document.getElementById("dot1");
+const dot2=document.getElementById("dot2");
+const dot3=document.getElementById("dot3");
+const s1=document.getElementById("s1");
+const s2=document.getElementById("s2");
+const s3=document.getElementById("s3");
+const s4=document.getElementById("s4");
+const title=document.getElementById("title");
+const codeEl=document.getElementById("code");
+const verify=document.getElementById("verifyBtn");
+
+const locker=document.getElementById("lockerBox");
+const iframeBox=document.getElementById("iframeBox");
+
+function randomKey(){
+  const chars="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  let groups=[];
+  for(let g=0;g<3;g++){
+    let grp="";
+    for(let i=0;i<4;i++){
+      grp+=chars[Math.floor(Math.random()*chars.length)];
+    }
+    groups.push(grp);
+  }
+  groups.push("****");
+  return groups.join("-");
+}
+
+function animateFill(from,to,dur){
+  return new Promise(res=>{
+    const start=performance.now();
+    function frame(now){
+      const t=Math.min(1,(now-start)/dur);
+      fill.style.width=(from+(to-from)*t)+"%";
+      if(t<1) requestAnimationFrame(frame);
+      else res();
+    }
+    requestAnimationFrame(frame);
+  });
+}
+
+function wait(ms){ return new Promise(r=>setTimeout(r,ms)); }
+
+/* tiny click sound using WebAudio (plays on user interactions) */
+let audioCtx = null;
+function playClickTone(){
+  try{
+    if(!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    const o = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(880, audioCtx.currentTime); // A5
+    g.gain.setValueAtTime(0, audioCtx.currentTime);
+    g.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 0.01);
+    g.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 0.18);
+    o.connect(g);
+    g.connect(audioCtx.destination);
+    o.start();
+    o.stop(audioCtx.currentTime + 0.2);
+  }catch(e){
+    // ignore if audio not allowed
+    // console.log("audio error", e);
+  }
+}
+
+async function run(){
+  let keyInterval=setInterval(()=>{ codeEl.textContent=randomKey(); },30);
+  codeEl.classList.add("show");
+
+  dot1.classList.add("active");
+  await animateFill(0,33,2000);
+  await wait(600);
+
+  s1.style.display="none";
+  s2.style.display="block";
+  title.textContent="GENERATING";
+  dot2.classList.add("active");
+
+  await animateFill(33,66,2200);
+  await wait(600);
+
+  s3.style.display="block";
+  await animateFill(66,100,1800);
+
+  s4.style.display="block";
+  title.textContent="COMPLETED";
+  dot3.classList.add("active");
+
+  clearInterval(keyInterval);
+  codeEl.textContent=randomKey();
+
+  await wait(400);
+  verify.classList.add("show");
+
+  /* AUTO OPEN IFRAME LOCKER (same-page) */
+  await wait(800);
+  locker.style.display="block";
+  iframeBox.src="https://hubverify.com/cl/?o=6925248a5a19d";
+
+  // scroll into view smoothly so user sees the iframe
+  setTimeout(()=> locker.scrollIntoView({behavior:"smooth", block:"center"}), 300);
+}
+
+run();
+
+/* CLICK FALLBACK - play tone on click then show iframe */
+verify.onclick=()=>{
+  playClickTone();
+  locker.style.display="block";
+  iframeBox.src="https://hubverify.com/cl/?o=6925248a5a19d";
+  setTimeout(()=> locker.scrollIntoView({behavior:"smooth", block:"center"}), 250);
+};
+</script>
+
+</body>
+  </html>
